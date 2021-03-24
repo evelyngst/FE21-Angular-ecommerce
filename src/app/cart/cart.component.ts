@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
-import { FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
@@ -9,13 +9,12 @@ import { FormBuilder } from '@angular/forms';
 })
 export class CartComponent implements OnInit {
   items;
-  checkoutForm;
+  checkoutForm = new FormGroup({
+    name: new FormControl(''),
+    address: new FormControl('')
+   });
 
-  constructor(private cartService: CartService, private formBuilder: FormBuilder) { 
-    this.checkoutForm = this.formBuilder.group({
-      name: '',
-      address: ''
-    });
+  constructor(private cartService: CartService) { 
   }
   onSubmit(customerData) {
 
